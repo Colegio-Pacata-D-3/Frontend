@@ -5,7 +5,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 const useStyles = makeStyles(theme => ({
     root:{
-        background: 'yellow'
+        background: 'white'
     },
     container:{
         height:'60%'
@@ -110,4 +110,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;
