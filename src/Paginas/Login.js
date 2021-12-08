@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { Grid, Container, Paper,Avatar, TextField, Typography,Button } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import { WindowSharp } from '@mui/icons-material';
 
 const useStyles = makeStyles(theme => ({
     root:{
@@ -37,7 +38,9 @@ const Login = () => {
         setBody({
             ...body,
             [e.target.name]: e.target.value
+            
         })
+        setLogin('')
 
     }
     
@@ -50,17 +53,18 @@ const Login = () => {
                 body: JSON.stringify(body)
             })
         const data = await response.json()
-        console.log(data);
         setLogin(data.message)
         setName({name:data.name,email:data.email})
+        if (login==="success")
+        {
+            window.location.replace('/UsersAdmin');
+        }
+        
       
     }
 
-    const saludo = login==="success"?
-        <p>
-            <b>Nombre: </b>{name.name}
-            <b>Correo: </b>{name.email}
-        </p>:<div>{login.message}</div>
+    const saludo = login==="Credenciales invalidos"?
+    <Typography color="red">{login}</Typography>:<></>
     
     return (
         <Grid container componet='main' className = {classes.root}>
@@ -92,11 +96,13 @@ const Login = () => {
                             name="password"
                             onChange={handleChange}
                         />
+                        {saludo}
                         <Button
                         fullWidth
                         variant='contained'
                         color= 'primary'
-                        onClick={()=>onSubmit()}>
+                        onClick={()=>onSubmit()}
+                        LinkComponent={Login.js}>
                             Ingresar
                         </Button>
                     </form>
@@ -104,7 +110,6 @@ const Login = () => {
                 </div>
 
             </Container>
-            {saludo}
             
         </Grid>
     )
