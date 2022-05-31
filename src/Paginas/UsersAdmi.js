@@ -22,9 +22,15 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         transform: 'translate(-50%,-50%)'
     },
-    iconos:{
-        cursor: 'pointer'
+    iconEdit:{
+        cursor: 'pointer',
+        color: 'red'
     },
+    iconDelete:{
+        cursor: 'pointer',
+        color: 'blue'
+    },
+
     inputMaterial:{
         width: '100%'
     },
@@ -38,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
     },
     botonSalir:{
         alignItems:"right"
+    },
+    table:{
+        borderStyle: "solid",
+        borderWidth: "medium",
+        borderColor: "blue"
     }
 }));
 function UsersAdmi(){
@@ -64,7 +75,8 @@ function UsersAdmi(){
     const peticionGet= async()=>{
         await axios.get(baseUrl)
         .then(response=>{
-            setData(response.data)
+            setData(response.data);
+            console.log(response.data);
         })
     }
     const peticionPost= async()=>{
@@ -184,28 +196,36 @@ function UsersAdmi(){
             <br></br>
             <Button variant="outlined" onClick={()=>abrirCerrarModalInsertar()}>Registrar Usuario</Button>
             
-           <TableContainer>
+           <TableContainer className={styles.table}>
                <Table>
                    <TableHead>
                        <TableRow>
                            <TableCell>Id</TableCell>
+                           <TableCell>CI</TableCell>
                            <TableCell>Nombre</TableCell>
+                           <TableCell>Apellido</TableCell>
+                           <TableCell>Fecha de Nacimiento</TableCell>
                            <TableCell>Email</TableCell>
-                           <TableCell>Contraseña</TableCell>
-                           <TableCell>Acciones</TableCell>
+                           <TableCell>Curso</TableCell>
+                           <TableCell>Rol</TableCell>
+                           <TableCell>Acciones</TableCell>  
                        </TableRow>
                    </TableHead>
                    <TableBody>
                        {data.map(user=>(
                            <TableRow key={user.id}>
                                 <TableCell>{user.id}</TableCell>
-                           <    TableCell>{user.name}</TableCell>
+                                <TableCell>{user.ci}</TableCell>
+                                <TableCell>{user.name}</TableCell>
+                                <TableCell>{user.lastName}</TableCell>
+                                <TableCell>{user.birth}</TableCell>
                                 <TableCell>{user.email}</TableCell> 
-                                <TableCell>{user.password}</TableCell>
+                                <TableCell>{user.course}</TableCell>
+                                <TableCell>{user.rol}</TableCell>
                                 <TableCell>
-                                    <Edit className={styles.iconos} onClick={()=>seleccionarConsola(user,'Editar')}/>
+                                    <Edit className={styles.iconEdit} onClick={()=>seleccionarConsola(user,'Editar')}/>
                                     &nbsp;&nbsp;&nbsp;
-                                    <Delete className={styles.iconos} onClick={()=>seleccionarConsola(user,'Eliminar')}/>
+                                    <Delete className={styles.iconDelete} onClick={()=>seleccionarConsola(user,'Eliminar')}/>
                                 </TableCell>
                            </TableRow>
                           
