@@ -59,9 +59,15 @@ function UsersAdmi(){
     const [modalEliminar, setModalEliminar] = useState(false); 
 
     const [consolaSeleccionada, setConsolaSeleccionada]= useState({
+        ci: 0,
         name: '',
+        lastname:'',
+        birth:'',
         email: '',
-        password:''
+        password:'',
+        course:'',
+        rol:'',
+        numberreference:0
     })
     const handleChange=e=>{
         const {name,value}=e.target;
@@ -80,6 +86,8 @@ function UsersAdmi(){
         })
     }
     const peticionPost= async()=>{
+        consolaSeleccionada.ci=parseInt(consolaSeleccionada.ci) 
+        consolaSeleccionada.numberreference=parseInt(consolaSeleccionada.numberreference) 
         await axios.post(baseUrlPost,consolaSeleccionada)
         .then(response=>{
             peticionGet()
@@ -93,9 +101,14 @@ function UsersAdmi(){
             dataNueva.map(consola=>{
                 if(consolaSeleccionada.id===consola.id){
                     consola.id=consolaSeleccionada.id;
+                    consola.ci=consolaSeleccionada.ci;
                     consola.name=consolaSeleccionada.name;
+                    consola.lastname=consolaSeleccionada.lastname;
+                    consola.birth=consolaSeleccionada.birth;
                     consola.email=consolaSeleccionada.email;
                     consola.password=consolaSeleccionada.password;
+                    consola.course=consolaSeleccionada.course;
+                    consola.rol=consolaSeleccionada.rol;
                 }
             })
             setData(dataNueva);
@@ -138,13 +151,31 @@ function UsersAdmi(){
     const bodyInsertar=(
         <div className={styles.modal}>
             <Typography className={styles.tituloModal}>Registro de Usuario</Typography>
+            <TextField name="ci" variant="standard" type="number" className={styles.inputMaterial} label = "Ci" onChange={handleChange}/>
+            <br/>
+            <br/>
             <TextField name="name" variant="standard" className={styles.inputMaterial} label = "Nombre" onChange={handleChange}/>
+            <br/>
+            <br/>
+            <TextField name="lastname" variant="standard" className={styles.inputMaterial} label = "Apellido" onChange={handleChange}/>
+            <br/>
+            <br/>
+            <TextField name="birth" variant="standard" className={styles.inputMaterial} label = "Fecha de nacimiento" onChange={handleChange}/>
             <br/>
             <br/>
             <TextField name="email" variant="standard" className={styles.inputMaterial} label = "Corre electronico" onChange={handleChange}/>
             <br/>
             <br/>
             <TextField name="password" variant="standard" className={styles.inputMaterial} label = "Contraseña" onChange={handleChange}/>
+            <br/>
+            <br/>
+            <TextField name="course" variant="standard" className={styles.inputMaterial} label = "Curso" onChange={handleChange}/>
+            <br/>
+            <br/>
+            <TextField name="rol" variant="standard" className={styles.inputMaterial} label = "Rol" onChange={handleChange}/>
+            <br/>
+            <br/>
+            <TextField name="numberreference" variant="standard"  type="number" className={styles.inputMaterial} label = "Numero de referencia" onChange={handleChange}/>
             <br/>
             <br/>
             <div align="right">
@@ -159,7 +190,16 @@ function UsersAdmi(){
     const bodyEditar=(
         <div className={styles.modal}>
             <Typography className={styles.tituloModal}>Registro de Usuario</Typography>
+            <TextField name="ci" variant="standard" className={styles.inputMaterial} label = "CI" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.ci}/>
+            <br/>
+            <br/>
             <TextField name="name" variant="standard" className={styles.inputMaterial} label = "Nombre" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.name}/>
+            <br/>
+            <br/>
+            <TextField name="lastname" variant="standard" className={styles.inputMaterial} label = "Apellido" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.lastname}/>
+            <br/>
+            <br/>
+            <TextField name="birth" variant="standard" className={styles.inputMaterial} label = "Fecha de nacimiento" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.birth}/>
             <br/>
             <br/>
             <TextField name="email" variant="standard" className={styles.inputMaterial} label = "Corre electronico" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.email}/>
@@ -168,6 +208,13 @@ function UsersAdmi(){
             <TextField name="password" variant="standard" className={styles.inputMaterial} label = "Contraseña" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.password}/>
             <br/>
             <br/>
+            <TextField name="course" variant="standard" className={styles.inputMaterial} label = "Curso" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.course}/>
+            <br/>
+            <br/>
+            <TextField name="rol" variant="standard" className={styles.inputMaterial} label = "Rol" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.rol}/>
+            <br/>
+            <br/>
+            
             <div align="right">
                 <Button onClick={()=>peticionPut()} color="primary" variant="outlined">Editar</Button> 
                 &nbsp;&nbsp;&nbsp;
@@ -220,7 +267,7 @@ function UsersAdmi(){
                                 <TableCell>{user.lastName}</TableCell>
                                 <TableCell>{user.birth}</TableCell>
                                 <TableCell>{user.email}</TableCell> 
-                                <TableCell>{user.course}</TableCell>
+                                <TableCell>{user.course} SECUNDARIA</TableCell>
                                 <TableCell>{user.rol}</TableCell>
                                 <TableCell>
                                     <Edit className={styles.iconEdit} onClick={()=>seleccionarConsola(user,'Editar')}/>
