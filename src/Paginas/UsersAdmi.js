@@ -61,7 +61,7 @@ function UsersAdmi(){
     const [consolaSeleccionada, setConsolaSeleccionada]= useState({
         ci: 0,
         name: '',
-        lastname:'',
+        lastName:'',
         birth:'',
         email: '',
         password:'',
@@ -86,7 +86,8 @@ function UsersAdmi(){
         })
     }
     const peticionPost= async()=>{
-        consolaSeleccionada.ci=parseInt(consolaSeleccionada.ci) 
+        consolaSeleccionada.ci=parseInt(consolaSeleccionada.ci)
+        consolaSeleccionada.password = consolaSeleccionada.ci.toString() 
         consolaSeleccionada.numberreference=parseInt(consolaSeleccionada.numberreference) 
         await axios.post(baseUrlPost,consolaSeleccionada)
         .then(response=>{
@@ -103,7 +104,7 @@ function UsersAdmi(){
                     consola.id=consolaSeleccionada.id;
                     consola.ci=consolaSeleccionada.ci;
                     consola.name=consolaSeleccionada.name;
-                    consola.lastname=consolaSeleccionada.lastname;
+                    consola.lastName=consolaSeleccionada.lastName;
                     consola.birth=consolaSeleccionada.birth;
                     consola.email=consolaSeleccionada.email;
                     consola.password=consolaSeleccionada.password;
@@ -157,16 +158,13 @@ function UsersAdmi(){
             <TextField name="name" variant="standard" className={styles.inputMaterial} label = "Nombre" onChange={handleChange}/>
             <br/>
             <br/>
-            <TextField name="lastname" variant="standard" className={styles.inputMaterial} label = "Apellido" onChange={handleChange}/>
+            <TextField name="lastName" variant="standard" className={styles.inputMaterial} label = "Apellido" onChange={handleChange}/>
             <br/>
             <br/>
             <TextField name="birth" variant="standard" className={styles.inputMaterial} label = "Fecha de nacimiento" onChange={handleChange}/>
             <br/>
             <br/>
             <TextField name="email" variant="standard" className={styles.inputMaterial} label = "Corre electronico" onChange={handleChange}/>
-            <br/>
-            <br/>
-            <TextField name="password" variant="standard" className={styles.inputMaterial} label = "Contraseña" onChange={handleChange}/>
             <br/>
             <br/>
             <TextField name="course" variant="standard" className={styles.inputMaterial} label = "Curso" onChange={handleChange}/>
@@ -196,7 +194,7 @@ function UsersAdmi(){
             <TextField name="name" variant="standard" className={styles.inputMaterial} label = "Nombre" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.name}/>
             <br/>
             <br/>
-            <TextField name="lastname" variant="standard" className={styles.inputMaterial} label = "Apellido" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.lastname}/>
+            <TextField name="lastName" variant="standard" className={styles.inputMaterial} label = "Apellido" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.lastName}/>
             <br/>
             <br/>
             <TextField name="birth" variant="standard" className={styles.inputMaterial} label = "Fecha de nacimiento" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.birth}/>

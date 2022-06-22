@@ -59,8 +59,6 @@ const Login = () => {
         {
             window.location.replace('/UsersAdmin');
         }
-        
-      
     }
 
     const saludo = login==="Credenciales invalidos"?
