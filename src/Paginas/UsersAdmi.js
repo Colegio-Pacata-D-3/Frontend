@@ -110,6 +110,7 @@ function UsersAdmi(){
                     consola.password=consolaSeleccionada.password;
                     consola.course=consolaSeleccionada.course;
                     consola.rol=consolaSeleccionada.rol;
+                    consola.numberreference = consolaSeleccionada.numberreference;
                 }
             })
             setData(dataNueva);
