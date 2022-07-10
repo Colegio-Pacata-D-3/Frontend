@@ -131,7 +131,7 @@ const CreateSubjectDocente = () =>{
     }  
     const bodyInsertar=(
         <div className={styles.modal}>
-            <Typography className={styles.tituloModal}>Registro de Usuario</Typography>
+            <Typography className={styles.tituloModal}>Registro de Materia a docente</Typography>
             <TextField name="idteacher" variant="standard" type="number" className={styles.inputMaterial} label = "Id Docente" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.idteacher} disabled='true'/>
             <br/>
             <br/>
@@ -188,7 +188,7 @@ const CreateSubjectDocente = () =>{
                <Table>
                    <TableHead>
                        <TableRow>
-                           <TableCell>Id</TableCell>
+                           
                            <TableCell>CI</TableCell>
                            <TableCell>Nombre</TableCell>
                            <TableCell>Apellido</TableCell>
@@ -201,7 +201,7 @@ const CreateSubjectDocente = () =>{
                    <TableBody>
                        {data.map(user=>(
                            <TableRow key={user.id}>
-                                <TableCell>{user.id}</TableCell>
+                            
                                 <TableCell>{user.ci}</TableCell>
                                 <TableCell>{user.name}</TableCell>
                                 <TableCell>{user.lastName}</TableCell>

@@ -8,7 +8,6 @@ import { Delete, Edit } from "@mui/icons-material";
 
 
 const baseUrl=`https://localhost:44324/api/note/`
-const baseUrlstudents=`https://localhost:44324/api/user/`
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -220,6 +219,7 @@ const RegisterNote = () =>{
             <a className="botonSalir" href="/">
                 <Button variant="contained">Salir</Button>
             </a>
+            
             <Typography variant="h3" color="primary" className={styles.tituloTabla}>Lista de estudiantes</Typography>
             <Typography variant="h4" color="primary" className={styles.tituloTabla}>Materia: {subject}</Typography>
             <Typography variant="h4" color="primary" className={styles.tituloTabla}>Curso: {grade} Secundaria</Typography>

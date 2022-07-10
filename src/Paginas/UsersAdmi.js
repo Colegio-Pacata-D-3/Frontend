@@ -246,7 +246,7 @@ function UsersAdmi(){
                <Table>
                    <TableHead>
                        <TableRow>
-                           <TableCell>Id</TableCell>
+                           
                            <TableCell>CI</TableCell>
                            <TableCell>Nombre</TableCell>
                            <TableCell>Apellido</TableCell>
@@ -260,7 +260,7 @@ function UsersAdmi(){
                    <TableBody>
                        {data.map(user=>(
                            <TableRow key={user.id}>
-                                <TableCell>{user.id}</TableCell>
+                                
                                 <TableCell>{user.ci}</TableCell>
                                 <TableCell>{user.name}</TableCell>
                                 <TableCell>{user.lastName}</TableCell>

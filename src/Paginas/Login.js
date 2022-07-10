@@ -57,7 +57,25 @@ const Login = () => {
         setName({name:data.name,email:data.email})
         if (login==="success")
         {
-            window.location.replace('/UsersAdmin');
+            if (data.rol==="estudiante")
+            {
+                var url = '/MenuStudent/'+data.id;
+                window.location.replace(url);            
+
+            }
+            if (data.rol==="administrador")
+            {
+                window.location.replace('/MenuAdm');          
+
+            }
+            if (data.rol==="docente")
+            {
+                var url = '/MenuDocente/'+data.id;
+                window.location.replace(url);            
+
+            }
+            
+            
         }
     }
 
