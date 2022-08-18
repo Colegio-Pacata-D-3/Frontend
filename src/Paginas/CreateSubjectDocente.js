@@ -5,6 +5,10 @@ import { Table, TableContainer, TableHead, TableCell, TableBody,TableRow, Modal,
 import { Typography } from "@mui/material";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+
 
 
 const baseUrl=`https://localhost:44324/api/user/`
@@ -132,13 +136,50 @@ const CreateSubjectDocente = () =>{
     const bodyInsertar=(
         <div className={styles.modal}>
             <Typography className={styles.tituloModal}>Registro de Materia a docente</Typography>
-            <TextField name="idteacher" variant="standard" type="number" className={styles.inputMaterial} label = "Id Docente" onChange={handleChange} value={consolaSeleccionada&&consolaSeleccionada.idteacher} disabled='true'/>
+            
+            
+            <InputLabel id="demo-simple-select-label">Nombre Materia</InputLabel>
+            <Select
+                fullWidth
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Curso"
+                name="name"
+                onChange={handleChange}
+                >
+                <MenuItem value={"Lenguaje"}>Lenguaje</MenuItem>
+                <MenuItem value={"Lengua extranjera"}>Lengua extranjera</MenuItem>
+                <MenuItem value={"Ciencias sociales"}>Ciencias sociales</MenuItem>
+                <MenuItem value={"Educacion fisica"}>Educacion fisica</MenuItem>
+                <MenuItem value={"Educacion Musical"}>Educacion Musical</MenuItem>
+                <MenuItem value={"Artes plasticas"}>Artes plasticas</MenuItem>
+                <MenuItem value={"Computacion"}>Computacion</MenuItem>
+                <MenuItem value={"Matematicas"}>Matematicas</MenuItem>
+                <MenuItem value={"Ciencias naturales"}>Ciencias naturales</MenuItem>
+                <MenuItem value={"Fisica"}>Fisica</MenuItem>
+                <MenuItem value={"Quimica"}>Quimica</MenuItem>
+                <MenuItem value={"Filosofia"}>Filosofia</MenuItem>
+                <MenuItem value={"Religion"}>Religion</MenuItem>
+
+            </Select>
             <br/>
             <br/>
-            <TextField name="name" variant="standard" className={styles.inputMaterial} label = "Nombre Materia" onChange={handleChange}/>
-            <br/>
-            <br/>
-            <TextField name="grade" variant="standard" className={styles.inputMaterial} label = "Curso" onChange={handleChange}/>
+            <InputLabel id="demo-simple-select-label">Curso</InputLabel>
+            <Select
+                fullWidth
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Curso"
+                name="grade"
+                onChange={handleChange}
+                >
+                <MenuItem value={1}>1 Secundaria</MenuItem>
+                <MenuItem value={2}>2 Secundaria</MenuItem>
+                <MenuItem value={3}>3 Secundaria</MenuItem>
+                <MenuItem value={4}>4 Secundaria</MenuItem>
+                <MenuItem value={5}>5 Secundaria</MenuItem>
+                <MenuItem value={6}>6 Secundaria</MenuItem>
+            </Select>
             <br/>
             <br/>
             <div align="right">

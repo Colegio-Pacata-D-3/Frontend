@@ -5,6 +5,9 @@ import { makeStyles } from "@mui/styles";
 import { Table, TableContainer, TableHead, TableCell, TableBody,TableRow, Modal, Button, TextField } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
 
 
 const baseUrl=`https://localhost:44324/api/user/`
@@ -88,7 +91,9 @@ function UsersAdmi(){
     const peticionPost= async()=>{
         consolaSeleccionada.ci=parseInt(consolaSeleccionada.ci)
         consolaSeleccionada.password = consolaSeleccionada.ci.toString() 
-        consolaSeleccionada.numberreference=parseInt(consolaSeleccionada.numberreference) 
+        consolaSeleccionada.numberreference=parseInt(consolaSeleccionada.numberreference)
+        consolaSeleccionada.course= consolaSeleccionada.course.toString()
+        console.log(consolaSeleccionada)
         await axios.post(baseUrlPost,consolaSeleccionada)
         .then(response=>{
             peticionGet()
@@ -162,18 +167,50 @@ function UsersAdmi(){
             <TextField name="lastName" variant="standard" className={styles.inputMaterial} label = "Apellido" onChange={handleChange}/>
             <br/>
             <br/>
-            <TextField name="birth" variant="standard" className={styles.inputMaterial} label = "Fecha de nacimiento" onChange={handleChange}/>
+            <Typography>Fecha de nacimiento</Typography>
+            <TextField name="birth" variant="standard" type="date" className={styles.inputMaterial}  onChange={handleChange}/>
             <br/>
             <br/>
+            
             <TextField name="email" variant="standard" className={styles.inputMaterial} label = "Corre electronico" onChange={handleChange}/>
             <br/>
             <br/>
-            <TextField name="course" variant="standard" className={styles.inputMaterial} label = "Curso" onChange={handleChange}/>
+            
+            <InputLabel id="demo-simple-select-label">Curso</InputLabel>
+            <Select
+                fullWidth
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Curso"
+                name="course"
+                onChange={handleChange}
+                >
+                <MenuItem value={1}>1 Secundaria</MenuItem>
+                <MenuItem value={2}>2 Secundaria</MenuItem>
+                <MenuItem value={3}>3 Secundaria</MenuItem>
+                <MenuItem value={4}>4 Secundaria</MenuItem>
+                <MenuItem value={5}>5 Secundaria</MenuItem>
+                <MenuItem value={6}>6 Secundaria</MenuItem>
+            </Select>
             <br/>
             <br/>
-            <TextField name="rol" variant="standard" className={styles.inputMaterial} label = "Rol" onChange={handleChange}/>
+           
+            <InputLabel id="demo-simple-select-label">Rol</InputLabel>
+            <Select
+                fullWidth
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Curso"
+                name="rol"
+                onChange={handleChange}
+                >
+                <MenuItem value={"administrador"}>Administrador</MenuItem>
+                <MenuItem value={"docente"}>Docente</MenuItem>
+                <MenuItem value={"estudiante"}>Estudiante</MenuItem>
+            </Select>
             <br/>
             <br/>
+           
             <TextField name="numberreference" variant="standard"  type="number" className={styles.inputMaterial} label = "Numero de referencia" onChange={handleChange}/>
             <br/>
             <br/>
